@@ -1,21 +1,26 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Knum {
 
   public int[] solution(int[] array, int[][] commands) {
-        int[] answer = {};
-        ArrayList<Integer> a = new ArrayList<>(); 
-        
-        for(int i = 0; i < array.length; i++) {
-        	a.add(array[i]); 
-        }
+	  
+        int[] answer = new int[commands.length];
+        int index = 0;
         
         for(int i = 0; i < commands.length; i++) {
-        	for(int j = 0; j < commands[i].length; j++) {
-        		ArrayList<Integer> list = new ArrayList<Integer>(a.subList(commands[i][0], commands[i][1]));
-        		list.sort(null);
-        		list.get(commands[i][2]);
-        	}
+        	int start = commands[i][0];
+        	int end = commands[i][1];
+        	int r = commands[i][2];
+        	
+        	int[] temp = new int[end - start +1];
+        	
+        	int count = 0;
+        	
+        	for(int j = start -1; j < end; j++ ) 
+        		temp[count++] = array[j];
+        		
+        		Arrays.sort(temp);
+        		answer[index++] = temp[r-1];
         }
         return answer;
     }
